@@ -64,10 +64,16 @@ int original_main(){
 }
 
 int main() {
-    test_all();
 
-    // original_main()
+    long long n;
+    std::cin >> n;  
+    std::vector<long long> numbers(n);
+    for (long long i = 0; i < n; ++i) {
+        std::cin >> numbers[i];
+    }
 
+    std::cout << MaxPairwiseProduct(numbers) << "\n";
+    return 0;
 }
 
 
