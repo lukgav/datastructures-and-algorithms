@@ -16,7 +16,28 @@ long long MaxPairwiseProduct(const std::vector<long long>& numbers) {
     return max_product;
 }
 
+long long NewMaxPairwiseProduct(const std::vector<long long>& numbers) {
+    long long n = numbers.size();
+    long long max_index = 0;
+    long long second_max_index = 0;
+    // find max value in a vector
+    for (int i = 0; i<n; i++) {
+        if(numbers[max_index] <= numbers[i]){
+            max_index = i;
+            // std::cout << "Max Value: " << numbers[max_index]<< "\n";
+        }
+    }
 
+    for (int j = 0; j<n; j++) {
+        if(numbers[second_max_index] >= numbers[j] || j == max_index){
+            continue;
+        }
+        second_max_index = j;
+        // std::cout << "second Max Value: " << numbers[second_max_index] << "\n";
+    }
+    return numbers[second_max_index] * numbers[max_index];
+
+}
 
 
 //Simplify the above problem function: 
@@ -72,7 +93,10 @@ int main() {
         std::cin >> numbers[i];
     }
 
-    std::cout << MaxPairwiseProduct(numbers) << "\n";
+    std::cout << NewMaxPairwiseProduct(numbers) << "\n";
+    // std::cout << NewMaxPairwiseProduct(std::vector<long long>(10000, 3)) << "\n";
+
+    // std::cout << MaxPairwiseProduct(numbers) << "\n";
     return 0;
 }
 
