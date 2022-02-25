@@ -38,26 +38,24 @@ long long NewMaxPairwiseProduct(const std::vector<long long>& numbers) {
     return ((long long)(numbers[second_max_index])) * numbers[max_index];
 
 }
-long long FastMaxPairwiseProduct(const std::vector<long long>& numbers) {
+long long MaxPairwiseProductFast(const std::vector<long long>& numbers) {
     long long n = numbers.size();
-    long long max_index = 0;
-    long long second_max_index = 0;
+    long long max_index1 = -1;
     // find max value in a vector
     for (int i=0; i<n; i++) {
-        if((max_index == -1) || numbers[max_index] <= numbers[i]){
-            max_index = i;
-            // std::cout << "Max Value: " << numbers[max_index]<< "\n";
-        }
+        if((max_index1 == -1) || numbers[i] > numbers[max_index1])
+            max_index1 = i;
+            // std::cout << "Max Value: " << numbers[max_index1]<< "\n";
+
     }
 
+    long long max_index2 = -1;
     for (int j = 0; j<n; j++) {
-        if((second_max_index == -1) || numbers[second_max_index] >= numbers[j] || j == max_index){
-            continue;
-        }
-        second_max_index = j;
-        // std::cout << "second Max Value: " << numbers[second_max_index] << "\n";
+        if( numbers[j] != numbers[max_index1] && ((max_index2 == -1) || numbers[j] > numbers[max_index2]))
+            max_index2 = j;
+        // std::cout << "second Max Value: " << numbers[max_index2] << "\n";
     }
-    return (((long long) numbers[second_max_index]) * numbers[max_index]);
+    return (((long long) numbers[max_index2]) * numbers[max_index1]);
 
 }
 
@@ -116,8 +114,9 @@ int main() {
         std::cin >> numbers[i];
     }
 
-    std::cout << FastMaxPairwiseProduct(numbers) << "\n";
-    // std::cout << NewMaxPairwiseProduct(std::vector<long long>(10000, 3)) << "\n";
+    // std::cout << MaxPairwiseProductFast(numbers) << "\n";
+    // std::cout << NewMaxPairwiseProduct(std::vector<long long>(10000, 0)) << "\n";
+    std::cout << MaxPairwiseProductFast(std::vector<long long>(3, 3)) << "\n";
 
     // std::cout << MaxPairwiseProduct(numbers) << "\n";
     return 0;
