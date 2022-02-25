@@ -26,7 +26,7 @@ long long MaxPairwiseProductFast(const std::vector<long long>& numbers) {
     for (int i=0; i<n; ++i) {
         if((max_index1 == -1) || numbers[i] > numbers[max_index1])
             max_index1 = i;
-        std::cout << "Max Value: " << numbers[max_index1]<< "\n";
+        // std::cout << "Max Value: " << numbers[max_index1]<< "\n";
 
     }
 
@@ -34,7 +34,7 @@ long long MaxPairwiseProductFast(const std::vector<long long>& numbers) {
     for (int j = 0; j<n; ++j) {
         if( j != max_index1 && ((max_index2 == -1) || numbers[j] > numbers[max_index2]))
             max_index2 = j;
-        std::cout << "second Max Value: " << numbers[max_index2] << "\n";
+        // std::cout << "second Max Value: " << numbers[max_index2] << "\n";
     }
     return (((long long) numbers[max_index2]) * numbers[max_index1]);
 }
@@ -110,7 +110,7 @@ int original_main(){
 }
 
 int main() {
-    stress_test();
+    // stress_test();
 
     long long n;
     std::cin >> n;  
@@ -119,9 +119,9 @@ int main() {
         std::cin >> numbers[i];
     }
 
-    // std::cout << MaxPairwiseProductFast(numbers) << "\n";
+    std::cout << MaxPairwiseProductFast(numbers) << "\n";
     // std::cout << NewMaxPairwiseProduct(std::vector<long long>(10000, 0)) << "\n";
-    std::cout << MaxPairwiseProductFast(std::vector<long long>(3, 3)) << "\n";
+    // std::cout << MaxPairwiseProductFast(std::vector<long long>(3, 3)) << "\n";
 
     // std::cout << MaxPairwiseProduct(numbers) << "\n";
     return 0;
