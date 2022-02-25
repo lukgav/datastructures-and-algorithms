@@ -1,43 +1,8 @@
+#include <cstdlib>
 #include <iostream>
 #include <vector>
-#include <tuple>
 #include <algorithm>
 
-long long MaxPairwiseProduct(const std::vector<long long>& numbers) {
-    long long max_product = 0;
-    long long n = numbers.size();
-
-    for (long long first = 0; first < n; ++first) {
-        for (long long second = first + 1; second < n; ++second) {
-            max_product = std::max(max_product,
-                numbers[first] * numbers[second]);
-        }
-    }
-    return max_product;
-}
-
-long long NewMaxPairwiseProduct(const std::vector<long long>& numbers) {
-    long long n = numbers.size();
-    long long max_index = 0;
-    long long second_max_index = 0;
-    // find max value in a vector
-    for (int i = 0; i<n; i++) {
-        if(numbers[max_index] <= numbers[i]){
-            max_index = i;
-            // std::cout << "Max Value: " << numbers[max_index]<< "\n";
-        }
-    }
-
-    for (int j = 0; j<n; j++) {
-        if(numbers[second_max_index] >= numbers[j] || j == max_index){
-            continue;
-        }
-        second_max_index = j;
-        // std::cout << "second Max Value: " << numbers[second_max_index] << "\n";
-    }
-    return ((long long)(numbers[second_max_index])) * numbers[max_index];
-
-}
 long long MaxPairwiseProductFast(const std::vector<long long>& numbers) {
     long long n = numbers.size();
     long long max_index1 = -1;
@@ -58,7 +23,6 @@ long long MaxPairwiseProductFast(const std::vector<long long>& numbers) {
     return (((long long) numbers[max_index2]) * numbers[max_index1]);
 
 }
-
 
 
 //Simplify the above problem function: 
@@ -121,23 +85,3 @@ int main() {
     // std::cout << MaxPairwiseProduct(numbers) << "\n";
     return 0;
 }
-
-
-//STILL WORKING ON THIS: DOES NOT WORK YET
-// return several sections of data that can stress  test the MaxPairwise Product
-//First: Need to make sure we have the currect data set. 
-// std::tuple<int, std::vector> generate_data(std::int vectorSize){
-
-//     //Integer overflow test
-//     size = vectorSize
-
-//     //rational numbers
-
-//     //Character input
-
-//     //int test_max_output(){
-
-//     //
-//     return vectorSize
-
-// }
