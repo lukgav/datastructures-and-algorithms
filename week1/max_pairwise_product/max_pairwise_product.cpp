@@ -38,41 +38,13 @@ long long MaxPairwiseProductFast(const std::vector<long long>& numbers) {
     }
     return (((long long) numbers[max_index2]) * numbers[max_index1]);
 }
-
-
-//Simplify the above problem function: 
-// 1. we want to test the function so lets make a tes_function
-// 2. Lets generate some SIMPLE inputs to test the function.
-// 3. Play around with some ideas of what we should test with SIMPLE INPUTS. 
-// 4. Play with one idea at a time....
-int test_integer_overflow(){
-
-    //Integer overflow test
-    int size = 2;
-    long long firstElement;
-    long long secondElement;
-    std::vector<long long> numbers(size);
-
-    firstElement = 100000;
-    secondElement = 90000;
-    numbers[0] = firstElement;
-    numbers[1] = secondElement;
-
-    std::cout << "Actual Value: " << MaxPairwiseProduct(numbers) << "\n";
-
-    std::cout << std::fixed<<"Expeceted Value: " << firstElement*secondElement << "\n";
-
-    return 0;
-
-}
-
 int stress_test(){
     while(true) {
-        int n= rand() % 4 + 2; 
+        int n= rand() % 10000 + 2; 
         std::cout << n << "\n";
         std::vector<long long> a;
         for (int i=0; i<n; ++i){
-            a.push_back(rand() % 10);
+            a.push_back(rand() % 100000000000);
         }
         for (int i=0; i<n; ++i){
             std::cout << a[i] << ' ';
@@ -91,12 +63,6 @@ int stress_test(){
     return 0;
 }
 
-// have a run all tests procedure
-
-int test_all(){
- test_integer_overflow();
-}
-
 int original_main(){
     long long n;
     std::cin >> n;  
@@ -110,7 +76,7 @@ int original_main(){
 }
 
 int main() {
-    // stress_test();
+    stress_test();
 
     long long n;
     std::cin >> n;  
