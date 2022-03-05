@@ -23,70 +23,34 @@ int fibonacci_naive(int n) {
     return fibonacci_naive(n - 1) + fibonacci_naive(n - 2);
 }
 
-long long fibonacci_fast(int n) {
-    // write your code here
+long long fibonacci_fast(long long n) {
 
-    //Pseudo code:
-    //Method 1:  
-    // Use Formula with (1/sqrt(5))*((pow((1+sqrt(5))/2), n)*(pow((1+sqrt(5))/2), n))
-
-    //Method 2: 
-    // Benutz ein dynamic fibonacci_array
-    //fib_arr[int] =
-    //for loop to populate the array with fibonnaci iterator
-    //Brauchen eins mit ersten Wert und der naechste mit dem vorherige Wert.
-    //return last element in fibbonnaci array. That should be the last value for the array 
-
-    // long fib_arr[0];
-    std::vector< long long > fib_arr;
-    fib_arr.push_back(0);
-    fib_arr.push_back(1);
-    long long letzte_fib_iterator = 1;
-    long long aktuell_fib_iterator = 1;
-    long long neue_fib_iterator = 0;
+    //Check for INteger OVerflow code
+    // if ((y > 0 && x > INT_MAX - y) ||
+    // (y < 0 && x < INT_MIN - y))
+    // {
+    //     /* Oh no, overflow */
+    // }
+    // else
+    // {
+    //     sum = x + y;
+    // }
+    long long letzte_fib_iterator = 1LL;
+    long long aktuell_fib_iterator = 1LL;
     long long old_aktuell_fib_iterator = aktuell_fib_iterator;
 
     if (n <= 1){
         return n;
     }
     else{
-        for(int i=2;i<=n;++i){
-            // if (i=0)
-            //         fib_arr.push_back(0);
-            //         continue;
-            //------ TESTING CODE
-            // std::cout << "Aktuell Bevor: "<<aktuell_fib_iterator << '\n';
-            // std::cout << "Letzte Bevor: "<<letzte_fib_iterator << '\n';
-            fib_arr.push_back(aktuell_fib_iterator);
+        for(long long i=2;i<=n;++i){
             old_aktuell_fib_iterator = aktuell_fib_iterator;
             aktuell_fib_iterator = letzte_fib_iterator + aktuell_fib_iterator;
             letzte_fib_iterator = old_aktuell_fib_iterator;
-
-                //------ TESTING CODE
-                // std::cout << "Aktuell: "<<aktuell_fib_iterator << '\n';
-                // std::cout << "Letzte: "<<letzte_fib_iterator << '\n';
-                // aktuell_fib_iterator = neue_fib_iterator;
-                // fib_arr.push_back(neue_fib_iterator);
-                // // std::cout << fibonacci_naive(fib_arr[i]) << '\n';
-                // std::cout << "New fibbonacci num:  " << fib_arr[i] << '\n';
-                // std::cout << "-----------------------" << '\n';
-
-            //------ TESTING CODE: Check every elementin array
-            // for(long long i: fib_arr){
-            //     std::cout << i << ' ';
-            // }
-            // std::cout << '\n';
-
-            // This doe snot work for vectors
-            // int arrSize = sizeof(fib_arr)/sizeof(fib_arr[0]);
-            // std::cout <<  "Array Size: "<< arrSize << '\n';
-
-            //     for (int i=0;i<arrSize;i++)
-            //         std::cout << fib_arr[i] << '\t';
-            //     std::cout << '\n';
+            std::cout << i << ": " << aktuell_fib_iterator << ' ';
         }
+        std::cout << '\n';
     }
-
     return old_aktuell_fib_iterator;
 }
 
@@ -103,11 +67,68 @@ void test_solution() {
 }
 
 int main() {
-    int n = 0;
+    long long n = 0;
     std::cin >> n;
     // fibonacci_fast(n);
     // std::cout << fibonacci_naive(n) << '\n';
     std::cout << fibonacci_fast(n) << '\n';
+
+    long long x = 1000000000LL*99999;
+    std::cout << x;
     // test_solution();
     return 0;
 }
+
+
+// write your code here
+
+//Pseudo code:
+//Method 1:  
+// Use Formula with (1/sqrt(5))*((pow((1+sqrt(5))/2), n)*(pow((1+sqrt(5))/2), n))
+
+//Method 2: 
+// Benutz ein dynamic fibonacci_array
+//fib_arr[int] =
+//for loop to populate the array with fibonnaci iterator
+//Brauchen eins mit ersten Wert und der naechste mit dem vorherige Wert.
+//return last element in fibbonnaci array. That should be the last value for the array 
+
+// long fib_arr[0];
+// std::vector<long long> fib_arr;
+// fib_arr.push_back(0);
+// fib_arr.push_back(1);
+
+// // if (i=0)
+// //         fib_arr.push_back(0);
+// //         continue;
+// //------ TESTING CODE
+// // std::cout << "Aktuell Bevor: "<<aktuell_fib_iterator << '\n';
+// // std::cout << "Letzte Bevor: "<<letzte_fib_iterator << '\n';
+// // fib_arr.push_back(aktuell_fib_iterator);
+// old_aktuell_fib_iterator = aktuell_fib_iterator;
+// aktuell_fib_iterator = letzte_fib_iterator + aktuell_fib_iterator;
+// letzte_fib_iterator = old_aktuell_fib_iterator;
+
+
+// //------ TESTING CODE
+// // std::cout << "Aktuell: "<<aktuell_fib_iterator << '\n';
+// // std::cout << "Letzte: "<<letzte_fib_iterator << '\n';
+// // aktuell_fib_iterator = neue_fib_iterator;
+// // fib_arr.push_back(neue_fib_iterator);
+// // // std::cout << fibonacci_naive(fib_arr[i]) << '\n';
+// // std::cout << "New fibbonacci num:  " << fib_arr[i] << '\n';
+// // std::cout << "-----------------------" << '\n';
+
+// //------ TESTING CODE: Check every elementin array
+// // for(long long i: fib_arr){
+// //     std::cout << i << ' ';
+// // }
+// // std::cout << '\n';
+
+// // This doe snot work for vectors
+// // int arrSize = sizeof(fib_arr)/sizeof(fib_arr[0]);
+// // std::cout <<  "Array Size: "<< arrSize << '\n';
+
+// //     for (int i=0;i<arrSize;i++)
+// //         std::cout << fib_arr[i] << '\t';
+// //     std::cout << '\n';
