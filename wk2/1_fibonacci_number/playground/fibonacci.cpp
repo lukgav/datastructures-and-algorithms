@@ -1,6 +1,7 @@
 #include <iostream>
 #include <cassert>
 #include <vector>
+// #include <limits>
 
 // The following code calls a naive algorithm for computing a Fibonacci number.
 //
@@ -25,29 +26,41 @@ int fibonacci_naive(int n) {
 
 long long fibonacci_fast(long long n) {
 
-    //Check for INteger OVerflow code
-    // if ((y > 0 && x > INT_MAX - y) ||
-    // (y < 0 && x < INT_MIN - y))
-    // {
-    //     /* Oh no, overflow */
-    // }
-    // else
-    // {
-    //     sum = x + y;
-    // }
+
     long long letzte_fib_iterator = 1LL;
     long long aktuell_fib_iterator = 1LL;
-    long long old_aktuell_fib_iterator = aktuell_fib_iterator;
+    long long old_aktuell_fib_iterator = 1LL;
 
     if (n <= 1){
         return n;
     }
     else{
+
         for(long long i=2;i<=n;++i){
-            old_aktuell_fib_iterator = aktuell_fib_iterator;
-            aktuell_fib_iterator = letzte_fib_iterator + aktuell_fib_iterator;
-            letzte_fib_iterator = old_aktuell_fib_iterator;
-            std::cout << i << ": " << aktuell_fib_iterator << ' ';
+                
+                // long long y = aktuell_fib_iterator;
+                // long long x = letzte_fib_iterator;
+                // Check for INteger OVerflow code
+                // if ((y >= 0 && x >= 0 && (x > LLP64_MAX - y)) || (y < 0 && x < 0 && (x < INT32_MIN - y)))
+                // {
+                //     /* Oh no, overflow */
+                //     std::cout << "|\n" << i << ": !OVERFLOW ERROR!: " << aktuell_fib_iterator << ' ' <<INT32_MAX << ' ' << INT32_MIN << '|';
+                //     break;
+                // }
+                // else
+                // {
+                //     long long sum = x + y;
+                // }
+                if(old_aktuell_fib_iterator <= 0){
+                    std::cout << "Interger Overflow: "<< i << ": " << aktuell_fib_iterator << " + " << letzte_fib_iterator << " = " << aktuell_fib_iterator <<'\n';
+                    break;
+                }
+                std::cout << i << ": " << old_aktuell_fib_iterator;
+                old_aktuell_fib_iterator = aktuell_fib_iterator;    
+                aktuell_fib_iterator = letzte_fib_iterator + aktuell_fib_iterator;
+                letzte_fib_iterator = old_aktuell_fib_iterator;
+
+                std::cout << " + " << letzte_fib_iterator << " = " << aktuell_fib_iterator <<'\n';
         }
         std::cout << '\n';
     }
