@@ -12,6 +12,19 @@ int gcd_naive(int a, int b) {
   return current_gcd;
 }
 
+int gcd_fast(int a, int b) {
+  int current_gcd = 1;
+
+}
+
+int stress_test(){
+
+  while(true){
+    
+  }
+  return 0;
+}
+
 int main() {
   int a, b;
   std::cin >> a >> b;
