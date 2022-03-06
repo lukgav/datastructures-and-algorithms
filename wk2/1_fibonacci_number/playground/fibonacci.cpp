@@ -26,10 +26,12 @@ int fibonacci_naive(int n) {
 
 long long fibonacci_fast(long long n) {
 
-
-    long long letzte_fib_iterator = 1LL;
-    long long aktuell_fib_iterator = 1LL;
-    long long old_aktuell_fib_iterator = 1LL;
+    // letzte_fib_iterator
+    long long fMinusTwo = 1LL;
+    // aktuell_fib_iterator
+    long long fCurrent = 1LL;
+    // old_aktuell_fib_iterator
+    long long fMinusOne = 1LL;
 
     if (n <= 1){
         return n;
@@ -51,20 +53,20 @@ long long fibonacci_fast(long long n) {
                 // {
                 //     long long sum = x + y;
                 // }
-                if(old_aktuell_fib_iterator <= 0){
-                    std::cout << "Interger Overflow: "<< i << ": " << aktuell_fib_iterator << " + " << letzte_fib_iterator << " = " << aktuell_fib_iterator <<'\n';
-                    break;
-                }
-                std::cout << i << ": " << old_aktuell_fib_iterator;
-                old_aktuell_fib_iterator = aktuell_fib_iterator;    
-                aktuell_fib_iterator = letzte_fib_iterator + aktuell_fib_iterator;
-                letzte_fib_iterator = old_aktuell_fib_iterator;
+                // if(old_aktuell_fib_iterator <= 0){
+                //     std::cout << "Interger Overflow: "<< i << ": " << aktuell_fib_iterator << " + " << letzte_fib_iterator << " = " << aktuell_fib_iterator <<'\n';
+                //     break;
+                // }
+                std::cout << i << ": " << fMinusTwo;
+                fMinusOne = fCurrent;    
+                fCurrent = (fMinusTwo + fMinusOne) % 1000000;
+                fMinusTwo = fMinusOne;
 
-                std::cout << " + " << letzte_fib_iterator << " = " << aktuell_fib_iterator <<'\n';
+                std::cout << " + " << fMinusOne << " = " << fCurrent <<'\n';
         }
         std::cout << '\n';
     }
-    return old_aktuell_fib_iterator;
+    return fMinusOne;
 }
 
 void test_solution() {
@@ -79,6 +81,11 @@ void test_solution() {
 
 }
 
+void test_long_long(){
+    long long x = 1000000000LL*99999;
+    std::cout << x;
+}
+
 int main() {
     long long n = 0;
     std::cin >> n;
@@ -86,8 +93,7 @@ int main() {
     // std::cout << fibonacci_naive(n) << '\n';
     std::cout << fibonacci_fast(n) << '\n';
 
-    long long x = 1000000000LL*99999;
-    std::cout << x;
+    // test_long_long()
     // test_solution();
     return 0;
 }
