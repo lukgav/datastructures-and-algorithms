@@ -57,14 +57,14 @@ long long fibonacci_fast(long long n) {
                 //     std::cout << "Interger Overflow: "<< i << ": " << aktuell_fib_iterator << " + " << letzte_fib_iterator << " = " << aktuell_fib_iterator <<'\n';
                 //     break;
                 // }
-                std::cout << i << ": " << fMinusTwo;
+                // std::cout << i << ": " << fMinusTwo;
                 fMinusOne = fCurrent;    
-                fCurrent = (fMinusTwo + fMinusOne) % 1000000;
+                fCurrent = (fMinusTwo + fMinusOne) % 10;
                 fMinusTwo = fMinusOne;
 
-                std::cout << " + " << fMinusOne << " = " << fCurrent <<'\n';
+                // std::cout << " + " << fMinusOne << " = " << fCurrent <<'\n';
         }
-        std::cout << '\n';
+        // std::cout << '\n';
     }
     return fMinusOne;
 }
